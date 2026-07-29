@@ -12,5 +12,24 @@ public:
 
     bool canReach(vector<int>& arr, int start) {
         return dfs(arr,start);
-    }
+    } 
 };
+
+/* Save the jump value before marking the index as visited.
+But consider index 0:
+
+arr[0] = 4
+
+After marking:
+
+arr[0] = -1;
+
+You call:
+
+dfs(arr, -1); // wrong
+dfs(arr, 1);  // wrong
+
+You should have called:
+
+dfs(arr, 4);
+dfs(arr, -4);*/
