@@ -11,14 +11,27 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        string fwd="",rev="";
-        ListNode *ptr=head;
-        while (ptr!=NULL){
-            fwd+=(char)('0'+ptr->val);
-            ptr=ptr->next;
+        ListNode *slow=head; 
+        ListNode *fast=head;
+        while(fast && fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        for (int i=fwd.size()-1;i>=0;i--) rev+=fwd[i];
-        if (fwd==rev) return true;
-        return false;
+        ListNode *prev=NULL;
+        ListNode *curr=slow;
+        while (curr){
+            ListNode *nxt=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=nxt;
+        }
+        ListNode *firstHalf=head;
+        ListNode *reverseHalf=prev;
+        while (reverseHalf){
+            if (firstHalf->val!=reverseHalf->val) return false;
+            firstHalf=firstHalf->next;
+            reverseHalf=reverseHalf->next;
+        }
+        return true;
     }
 };
