@@ -1,13 +1,18 @@
 class Solution {
 public:
     vector<int> findDuplicates(vector<int>& nums) {
-        map<int,int>freq;
-        for (int n:nums) freq[
-            n]++;
-        vector<int>ans;
-        for (auto it:freq){
-            if (it.second==2) ans.push_back(it.first);
+        vector<int> ans;
+
+        for (int i = 0; i < nums.size(); i++) {
+            int index = abs(nums[i]) - 1;
+
+            if (nums[index] < 0) {
+                ans.push_back(abs(nums[i]));
+            } else {
+                nums[index] = -nums[index];
+            }
         }
+
         return ans;
     }
 };
