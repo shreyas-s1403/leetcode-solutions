@@ -12,6 +12,6 @@ public:
                 right=mid;
             }
         }
-        return left;
+        return right;
     }
 };
