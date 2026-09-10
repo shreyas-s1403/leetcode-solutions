@@ -16,7 +16,7 @@ public:
 
         for (int i = k; i < s.size(); i++) {
 
-            if (s[i-k]=='a' || s[i-k]=='e' || s[i-k]=='i' || s[i-k]=='o' || s[i-k]=='u')
+            if (s1[0]=='a' || s1[0]=='e' || s1[0]=='i' || s1[0]=='o' || s1[0]=='u')
                 vowel--;
 
             s1.erase(0, 1);
