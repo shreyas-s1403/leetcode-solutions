@@ -1,18 +1,17 @@
 class Solution {
 public:
     vector<int> findDuplicates(vector<int>& nums) {
-        vector<int> ans;
-        //using array marking
-        for (int i = 0; i < nums.size(); i++) {
-            int index = abs(nums[i]) - 1;
-
-            if (nums[index] < 0) {
-                ans.push_back(abs(nums[i]));
-            } else {
-                nums[index] = -nums[index];
-            }
+        vector<int>duplicates;
+        int idx=0;
+        while (idx<nums.size()){
+            int correct=nums[idx]-1;
+            if (nums[idx]!=nums[correct]) swap(nums[idx],nums[correct]);
+            else idx++;
         }
-
-        return ans;
+        for (int i=0;i<nums.size();i++){
+            if (nums[i]!=i+1) duplicates.push_back(nums[i]);
+        }
+        
+        return duplicates;
     }
 };
