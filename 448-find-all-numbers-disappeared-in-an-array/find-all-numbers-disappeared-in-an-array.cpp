@@ -2,15 +2,13 @@ class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
         vector<int>disappear;
-        unordered_map<int,int>freq;
-        for(int n:nums){
-            freq[n]+=1;
+        int idx=0;
+        while (idx<nums.size()){
+            if (nums[idx]!=nums[nums[idx]-1]) swap(nums[idx],nums[nums[idx]-1]);
+            else idx++;
         }
-        int flag=0;
-        for(int i=1;i<=nums.size();i++){
-            if (!freq.contains(i)){
-                disappear.push_back(i);
-            }
+        for (int i=0;i<nums.size();i++){
+            if (nums[i]!=i+1) disappear.push_back(i+1);
         }
         
         return disappear;
