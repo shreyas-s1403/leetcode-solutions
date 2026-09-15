@@ -1,23 +1,19 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        // Phase 1: Find the meeting point
-        int slow = nums[0];
-        int fast = nums[0];
-
-        do {
-            slow = nums[slow];
-            fast = nums[nums[fast]];
-        } while (slow != fast);
-
-        // Phase 2: Find the entrance to the cycle
-        slow = nums[0];
-
-        while (slow != fast) {
-            slow = nums[slow];
-            fast = nums[fast];
+        int idx=0;
+        while (idx<nums.size()){
+            int correct=nums[idx]-1;
+            if (nums[idx]!=nums[correct]){
+                swap(nums[idx],nums[correct]);
+            }
+            else{
+                idx++;
+            }
         }
-
-        return slow;
+        for (int i=0;i<nums.size();i++){
+            if (nums[i]!=i+1) return nums[i];
+        }
+        return -1;
     }
 };
