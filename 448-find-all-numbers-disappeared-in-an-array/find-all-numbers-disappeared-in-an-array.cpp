@@ -4,7 +4,8 @@ public:
         vector<int>disappear;
         int idx=0;
         while (idx<nums.size()){
-            if (nums[idx]!=nums[nums[idx]-1]) swap(nums[idx],nums[nums[idx]-1]);
+            int correct=nums[idx]-1;
+            if (nums[idx]!=nums[correct]) swap(nums[idx],nums[correct]);
             else idx++;
         }
         for (int i=0;i<nums.size();i++){
