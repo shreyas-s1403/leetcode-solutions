@@ -6,7 +6,7 @@ public:
         for(int n:nums){
             freq[n]+=1;
         }
-        
+        int flag=0;
         for(int i=1;i<=nums.size();i++){
             if (!freq.contains(i)){
                 disappear.push_back(i);
