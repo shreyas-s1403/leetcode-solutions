@@ -8,6 +8,7 @@ public:
         bool up=true;
         while (row<m && col<n){
             if (up){
+                //here always stop when col=n-2 so that to check for last condition else they would create a big error
                 while (row>0 && col<n-1){
                     arr[idx++]=mat[row][col];
                     row--;
