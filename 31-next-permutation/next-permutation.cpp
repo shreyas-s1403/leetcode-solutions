@@ -18,6 +18,6 @@ public:
                 break;
             }
         }
-        reverse(nums.begin()+pivot+1,nums.end());
+        reverse(nums.begin()+pivot+1,nums.end());        
     }
 };
