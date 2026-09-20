@@ -4,9 +4,7 @@ public:
         int idx=0;
         while (idx<nums.size()){
             if (nums[idx]<nums.size() && nums[idx]!=idx){
-                int temp=nums[nums[idx]];
-                nums[nums[idx]]=nums[idx];
-                nums[idx]=temp;
+                swap(nums[idx],nums[nums[idx]]);
             }
             else idx++;
         }
