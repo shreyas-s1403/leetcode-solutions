@@ -9,8 +9,9 @@ public:
             for (int n:piles){
                 time+=(n+mid-1)/mid;
             } 
-            if (time<=h) right=mid;
-            else left=mid+1;
+            if (time>h) left=mid+1;
+            
+            else right=mid;
         }
         return left;
     }
