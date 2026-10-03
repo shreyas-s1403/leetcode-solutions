@@ -1,21 +1,50 @@
 class Solution {
 public:
-    int strStr(string haystack, string needle) {
 
-        if (needle.size() > haystack.size()) return -1;
+    void computeLPS(string pat,int m,vector<int>&lps){
+        int len=0,i=1;
+        lps[0]=0;
+        while (i<m){
+            if (pat[i]==pat[len]){
+                lps[i]=len+1;
+                len++;
+                i++;
+            }
+            else{
+                if (len!=0) len=lps[len-1];
+                else{
+                    lps[i]=0;
+                    i++;
+                }
+            }
+        }
+    }
 
-        for (int i = 0; i <= haystack.size() - needle.size(); i++) {
-            int j = 0;
+    int KMPSearch(string txt,string pat){
+        int n=txt.size(),m=pat.size();
+        vector<int>lps(m,0);
+        computeLPS(pat,m,lps);
 
-            while (j < needle.size() && haystack[i + j] == needle[j]) {
+        int i=0,j=0;
+        while (i<n){
+            if (txt[i]==pat[j]){
+                i++; 
                 j++;
             }
 
-            if (j == needle.size()) {
-                return i;
+            else{
+                if (j!=0) j=lps[j-1];
+                else i++;
+            }
+
+            if (j==m){
+                return i-m;
             }
         }
-
         return -1;
+    }
+
+    int strStr(string haystack, string needle) {
+        return KMPSearch(haystack,needle);
     }
 };
