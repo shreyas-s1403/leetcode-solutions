@@ -1,9 +1,9 @@
 class Solution {
 public:
     int maxSubarraySumCircular(vector<int>& nums) {
-        int totalsum=nums[0],maxsum=nums[0],minsum=nums[0];
-        int currmax=nums[0],currmin=nums[0];
-        for (int i=1;i<nums.size();i++){
+        int totalsum=0,maxsum=INT_MIN,minsum=INT_MAX;
+        int currmax=0,currmin=0;
+        for (int i=0;i<nums.size();i++){
             totalsum+=nums[i];
             
             currmin=min(nums[i],currmin+nums[i]);
