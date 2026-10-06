@@ -7,6 +7,6 @@ public:
             if (nums[mid]>nums[right]) left=mid+1;
             else right = mid;
         }
-        return nums[right];
+        return nums[left];
     }
 };
