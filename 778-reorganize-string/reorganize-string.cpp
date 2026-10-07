@@ -1,30 +1,52 @@
 class Solution {
 public:
     string reorganizeString(string s) {
-        vector<int>freq(26,0);
-        for (char ch:s) freq[ch-'a']++;
+        vector<int> freq(26,0);
 
-        auto cmp = [](const vector<int>&a,const vector<int>&b){
-            return b[1]>a[1];
+        for (char ch:s) {
+            freq[ch-'a']++;
+        }
+
+        auto cmp = [](const vector<int>& a, const vector<int>& b) {
+            return a[1] < b[1]; //creates max HEAP
         };
-        priority_queue<vector<int>,vector<vector<int>>,decltype(cmp)> pq (cmp);
 
-        for (int i=0;i<26;i++){
-            if (freq[i]>0) pq.push({i,freq[i]});
+        priority_queue<vector<int>, vector<vector<int>>, decltype(cmp)> pq(cmp);
+
+        for (int i=0;i<26;i++) {
+            if (freq[i]>0)
+                pq.push({i,freq[i]});
         }
 
-        string result="";
-        vector<int>prev;
+        string ans;
 
-        while (!pq.empty()){
-            vector<int>curr=pq.top();
+        while (pq.size() >= 2) {
+            vector<int> a=pq.top();
             pq.pop();
-            result+=char('a'+curr[0]);
-            curr[1]--;
-            if (!prev.empty() && prev[1]>0) pq.push(prev);
-            prev=curr;
+
+            vector<int> b=pq.top();
+            pq.pop();
+
+            ans += char(a[0]+'a');
+            ans += char(b[0]+'a');
+
+            a[1]--;
+            b[1]--;
+
+            if (a[1]>0) pq.push(a);
+            if (b[1]>0) pq.push(b);
         }
-        if (result.size()!=s.size()) return "";
-        return result;
+
+        if (!pq.empty()) {
+            vector<int> a=pq.top();
+            pq.pop();
+
+            if (a[1]>1)
+                return "";
+
+            ans += char(a[0]+'a');
+        }
+
+        return ans;
     }
 };
