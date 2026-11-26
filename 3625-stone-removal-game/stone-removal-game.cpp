@@ -9,14 +9,12 @@ public:
             cnt--;
             check++;
         }
-        if (n<0 && check%2==0){
+        if (n<0 && check%2==0 || n==0 && check%2!=0){
             return true;
         }
-        else if (n<0 && check%2!=0){
+        else if (n<0 && check%2!=0 || n==0 && check%2==0){
             return false;
         }
-        else if (n==0 && check%2==0) return false;
-        else if (n==0 && check%2!=0) return true;
         return false;
     }
 };
