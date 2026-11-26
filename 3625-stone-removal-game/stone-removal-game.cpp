@@ -4,17 +4,11 @@ public:
         if (n<10) return false;
         int cnt=10;
         int check=0;
-        while (n>0){
+        while (n>=cnt){
             n-=cnt;
             cnt--;
             check++;
         }
-        if (n<0 && check%2==0 || n==0 && check%2!=0){
-            return true;
-        }
-        else if (n<0 && check%2!=0 || n==0 && check%2==0){
-            return false;
-        }
-        return false;
+        return check%2!=0;
     }
 };
